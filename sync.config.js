@@ -20,7 +20,7 @@ import Config from 'react-native-config';
 
 export const SYNC_CONFIG = {
   // Set `enabled` to `true` to enable sync.
-  enabled: true,
+  enabled: false,
   // Add your Atlas App ID here if sync is enabled.
-  appId: Config.ATLAS_APP_ID || 'YOUR_APP_ID',
+  appId: Config.ATLAS_APP_ID || 'jadwal-pelajaran-siskgtn',
 };

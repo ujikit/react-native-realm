@@ -21,16 +21,27 @@ import 'react-native-get-random-values';
 import React from 'react';
 import {AppRegistry} from 'react-native';
 
-import {AppNonSync} from './app/AppNonSync';
-import {AppSync} from './app/AppSync';
-import {SYNC_CONFIG} from './sync.config';
 import {name as appName} from './app.json';
+import {NavigationContainer} from '@react-navigation/native';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
+import Stack from './app/Stack';
+import { RealmProvider } from '@realm/react';
+import { schemas } from './app/models';
 
 /**
  * Renders either the app that uses Device Sync, or the
  * one only using a local Realm.
  */
-export const App = () =>
-  SYNC_CONFIG.enabled ? <AppSync appId={SYNC_CONFIG.appId} /> : <AppNonSync />;
+export const App = () => {
+  return (
+    <NavigationContainer>
+      <SafeAreaProvider>
+        <RealmProvider schema={schemas}>
+          <Stack />
+        </RealmProvider>
+      </SafeAreaProvider>
+    </NavigationContainer>
+  );
+};
 
 AppRegistry.registerComponent(appName, () => App);

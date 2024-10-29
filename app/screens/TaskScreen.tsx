@@ -41,12 +41,13 @@ export function TaskScreen({userId}: TaskScreenProps) {
     deleteTask,
     showCompleted,
     toggleShowCompleted,
+    _handleAdd,
   } = useTaskManager(userId);
 
   return (
     <View style={styles.container}>
       <View style={styles.content}>
-        <AddTaskForm onSubmit={addTask} />
+        <AddTaskForm onSubmit={_handleAdd} />
         {tasks.length === 0 ? (
           <IntroText />
         ) : (

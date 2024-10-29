@@ -18,6 +18,52 @@
 
 import {Task} from './Task';
 
+// Define Subjects
+const SubjectSchema = {
+  name: 'Subject',
+  properties: {
+    id: 'int',
+    name: 'string',
+  },
+};
+
+// Define Hours
+const HourSchema = {
+  name: 'Hour',
+  properties: {
+    id: 'int',
+    startTime: 'string', // E.g., "07:00"
+    endTime: 'string', // E.g., "07:35"
+    subject: 'Subject?', // Assign a subject to each hour
+  },
+};
+
+// Define Days
+const DaySchema = {
+  name: 'Day',
+  properties: {
+    id: 'int',
+    name: 'string', // E.g., "Monday"
+    hours: {type: 'list', objectType: 'Hour'}, // Hours in the day
+  },
+};
+
+// Define Classes
+export const ClassSchema = {
+  name: 'Class',
+  properties: {
+    id: 'int',
+    name: 'string', // E.g., "Class A"
+    schedule: {type: 'list', objectType: 'Day'}, // Full week schedule
+  },
+};
+
 // If you have multiple data models, you can export all of them in a
 // list as a convenience when providing the schema when opening a Realm.
-export const schemas = [Task];
+export const schemas = [
+  Task,
+  SubjectSchema,
+  HourSchema,
+  DaySchema,
+  ClassSchema,
+];
